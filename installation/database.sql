@@ -396,7 +396,7 @@ CREATE TABLE `coupons` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `currencies`
+-- Table structure for table `currencies` ya
 --
 
 CREATE TABLE `currencies` (
