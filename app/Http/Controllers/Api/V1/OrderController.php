@@ -134,7 +134,7 @@ class OrderController extends Controller
 
     public function get_order_list(Request $request)
     {
-        $orders = Order::with(['customer', 'delivery_man.rating'])->withCount('details')->where(['user_id' => $request->user()->id])->get();
+        $orders = Order::with(['customer', 'delivery_man.rating','branch'])->withCount('details')->where(['user_id' => $request->user()->id])->get();
         return response()->json($orders->map(function ($data) {
             $data->details_count = (integer)$data->details_count;
             return $data;
