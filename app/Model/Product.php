@@ -33,4 +33,10 @@ class Product extends Model
             ->select(DB::raw('avg(rating) average, product_id'))
             ->groupBy('product_id');
     }
+
+    public function branch()
+    {
+        return $this->belongsTo(Branch::class)->withDefault();
+    }
+
 }

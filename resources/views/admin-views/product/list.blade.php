@@ -44,6 +44,7 @@
                                 <th style="width: 25%">{{trans('messages.image')}}</th>
                                 <th>{{trans('messages.status')}}</th>
                                 <th>{{trans('messages.price')}}</th>
+                                <th>{{trans('messages.branch')}}</th>
                                 <th>{{trans('messages.action')}}</th>
                             </tr>
                             <tr>
@@ -85,6 +86,7 @@
                                     {{--<input type="text" id="column4_search" class="form-control form-control-sm"
                                            placeholder="Search countries">--}}
                                 </th>
+                                <th></th>
                             </tr>
                             </thead>
 
@@ -119,6 +121,7 @@
                                         @endif
                                     </td>
                                     <td>{{$product['price']." ".\App\CentralLogics\Helpers::currency_symbol()}}</td>
+                                    <td>{{$product->branch->name}}</td> <!-- branch -->
                                     <td>
                                         <!-- Dropdown -->
                                         <div class="dropdown">

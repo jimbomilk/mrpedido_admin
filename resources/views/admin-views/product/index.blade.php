@@ -83,7 +83,10 @@
                     </div>
 
                     <div class="row">
-                        <div class="col-md-6 col-6">
+                        <div class="col-md-4 col-4">
+                            @include('admin-views.product.partials._branches')
+                        </div>
+                        <div class="col-md-4 col-4">
                             <div class="form-group">
                                 <label class="input-label" for="exampleFormControlSelect1">{{trans('messages.category')}}<span
                                         class="input-label-secondary">*</span></label>
@@ -96,7 +99,7 @@
                                 </select>
                             </div>
                         </div>
-                        <div class="col-md-6 col-6">
+                        <div class="col-md-4 col-4">
                             <div class="form-group">
                                 <label class="input-label" for="exampleFormControlSelect1">{{trans('messages.sub_category')}}<span
                                         class="input-label-secondary"></span></label>

@@ -7,6 +7,8 @@ use App\Http\Controllers\Controller;
 use App\Model\Category;
 use App\Model\Product;
 use App\Model\Review;
+use App\Model\Branch;
+
 use Brian2694\Toastr\Facades\Toastr;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -65,7 +67,8 @@ class ProductController extends Controller
     public function index()
     {
         $categories = Category::where(['position' => 0])->get();
-        return view('admin-views.product.index', compact('categories'));
+        $branches = Branch::where('status', 1)->get();
+        return view('admin-views.product.index', compact('categories','branches'));
     }
 
     public function list()
@@ -98,6 +101,7 @@ class ProductController extends Controller
     {
         $validator = Validator::make($request->all(), [
             'name' => 'required|unique:products',
+            'branch_id' => 'required',
             'category_id' => 'required',
             'image' => 'required',
             'price' => 'required|numeric|min:1',
@@ -215,7 +219,8 @@ class ProductController extends Controller
         $product = Product::find($id);
         $product_category = json_decode($product->category_ids);
         $categories = Category::where(['parent_id' => 0])->get();
-        return view('admin-views.product.edit', compact('product', 'product_category', 'categories'));
+        $branches = Branch::where('status',1)->get();
+        return view('admin-views.product.edit', compact('product', 'product_category', 'categories','branches'));
     }
 
     public function status(Request $request)
@@ -232,10 +237,12 @@ class ProductController extends Controller
         $validator = Validator::make($request->all(), [
             'name' => 'required',
             'category_id' => 'required',
+            'branch_id' => 'required',
             'price' => 'required|numeric|min:1',
         ], [
             'name.required' => 'Product name is required!',
             'category_id.required' => 'category  is required!',
+            'branch_id.required' => 'Branch  is required!',
         ]);
 
         if ($request['discount_type'] == 'percent') {
@@ -275,6 +282,7 @@ class ProductController extends Controller
             ]);
         }
 
+        $product->branch_id = $request->branch_id;
         $product->category_ids = json_encode($category);
         $product->description = $request->description;
 
