@@ -49,8 +49,9 @@ class DeliverymanController extends Controller
                 ]
             ], 401);
         }
-        $orders = Order::with(['delivery_address','customer'])->whereIn('order_status', ['pending', 'processing', 'out_for_delivery'])
+        $orders = Order::with(['delivery_address','customer','branch'])->whereIn('order_status', ['pending', 'processing', 'out_for_delivery'])
             ->where(['delivery_man_id' => $dm['id']])->get();
+        Log::info('Order Data:'.$orders);
         return response()->json($orders, 200);
     }
 
