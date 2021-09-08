@@ -137,6 +137,7 @@ class OrderController extends Controller
         $orders = Order::with(['customer', 'delivery_man.rating','branch'])->withCount('details')->where(['user_id' => $request->user()->id])->get();
         return response()->json($orders->map(function ($data) {
             $data->details_count = (integer)$data->details_count;
+            Log::info('Order Data:'.$data);
             return $data;
         }), 200);
     }
