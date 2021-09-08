@@ -10,7 +10,7 @@ use App\Model\Order;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
-use Log;
+
 
 class DeliverymanController extends Controller
 {
@@ -52,7 +52,7 @@ class DeliverymanController extends Controller
         }
         $orders = Order::with(['delivery_address','customer','branch'])->whereIn('order_status', ['pending', 'processing', 'out_for_delivery'])
             ->where(['delivery_man_id' => $dm['id']])->get();
-        Log::info('Order Data:'.$orders);
+
         return response()->json($orders, 200);
     }
 
