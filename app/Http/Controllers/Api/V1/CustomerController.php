@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Model\CustomerAddress;
 use App\Model\Order;
 use App\Model\OrderDetail;
+use App\Model\DeliveryMan;
 use App\Model\PointTransitions;
 use App\User;
 use Illuminate\Http\Request;
