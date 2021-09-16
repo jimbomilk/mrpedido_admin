@@ -185,4 +185,10 @@ class CustomerController extends Controller
             return response()->json([], 200);
         }
     }
+
+    public function riders_available_list(Request $request)
+    {
+        $riders = DeliveryMan::all()->get();
+        return response()->json($riders, 200);
+    }
 }
