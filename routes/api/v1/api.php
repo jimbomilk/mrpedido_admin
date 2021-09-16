@@ -105,7 +105,7 @@ Route::group(['namespace' => 'Api\V1'], function () {
             Route::delete('remove', 'WishlistController@remove_from_wishlist');
         });
         Route::group(['prefix' => 'riders'], function () {
-            Route::get('list', 'DeliverymanController@list');
+            Route::get('list', 'CustomerController@riders_available_list');
         });
     });
 
