@@ -189,7 +189,7 @@ class CustomerController extends Controller
 
     public function riders_available_list(Request $request)
     {
-        $riders = DeliveryMan::all()->get();
+        $riders = '';
         return response()->json($riders, 200);
     }
 }
