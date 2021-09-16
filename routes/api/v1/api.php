@@ -32,6 +32,7 @@ Route::group(['namespace' => 'Api\V1'], function () {
         Route::get('order-details', 'DeliverymanController@get_order_details');
         Route::get('last-location', 'DeliverymanController@get_last_location');
         Route::put('update-fcm-token', 'DeliverymanController@update_fcm_token');
+        Route::get('list', 'DeliverymanController@list');
 
         Route::group(['prefix' => 'reviews', 'middleware' => ['auth:api']], function () {
             Route::get('/{delivery_man_id}', 'DeliveryManReviewController@get_reviews');

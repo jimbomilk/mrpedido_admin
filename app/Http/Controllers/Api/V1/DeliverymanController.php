@@ -15,6 +15,25 @@ use Illuminate\Support\Facades\Validator;
 class DeliverymanController extends Controller
 {
 
+    public function list(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'token' => 'required'
+        ]);
+        if ($validator->fails()) {
+            return response()->json(['errors' => Helpers::error_processor($validator)], 403);
+        }
+        $dm = DeliveryMan::all(['auth_token' => $request['token']])->get();
+        if (isset($dm) == false) {
+            return response()->json([
+                'errors' => [
+                    ['code' => 'delivery-man', 'message' => 'Invalid token!']
+                ]
+            ], 401);
+        }
+        return response()->json($dm, 200);
+    }
+
     public function get_profile(Request $request)
     {
         $validator = Validator::make($request->all(), [
